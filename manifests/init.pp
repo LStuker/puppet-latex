@@ -21,8 +21,9 @@
 #
 class latex {
   # Install Packages
-  case $operatingsystem {
-    Ubuntu,Debian: { require latex::packages::ubuntu }
-    RedHat,CentOS: { require latex::packages::centos }
+  case $osfamily {
+    debian: { require latex::packages::ubuntu }
+    redhat: { require latex::packages::centos }
+    suse:   { require latex::packages::suse }
   }
 }
