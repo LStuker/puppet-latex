@@ -14,10 +14,30 @@ class latex::params{
 
   case $::osfamily {
     'RedHat': {
-      $packages = ['tetex','tetex-dvips','tetex-latex']
+      $packages = ['tetex',
+                   'tetex-dvips',
+                   'tetex-latex'
+                  ]
     }
     'Debian': {
-      $packages = ['texlive-latex-base', 'texlive-latex-recommended', 'texlive-latex-extra', 'texlive-latex-doc']
+      $packages = $::operatingsystem ? {
+        'Ubuntu' => $::lsbmajdistrelease ? {
+          /^10/,/^11/,/^12/ => ['texlive-latex-base',
+                                'texlive-latex-recommended',
+                                'texlive-latex-extra',
+                                'texlive-latex-doc'
+                                ],
+          default => ['texlive-latex-base-doc',
+                      'texlive-latex-recommended',
+                      'texlive-latex-extra',
+                      'texlive-latex-doc'
+                      ],
+          },
+      default => ['texlive-latex-base-doc',
+                  'texlive-latex-recommended',
+                  'texlive-latex-extra',
+                  'texlive-latex-doc'
+                 ],
     }
     default: {
       warning("Module 'latex' is not currently supported on OS: ${::operatingsystem}")
