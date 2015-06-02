@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The latex puppet module install git packages
+The latex puppet module install latex packages
 
 ## Usage
 
@@ -11,15 +11,24 @@ class { 'latex': }
 
 ## Requires
 
+-
 
-## License
+## Limitations
 
-The puppet module is provided under the terms of The MIT License.
+This module is currently supported on:
+
+* RedHat Enterprise Linux 7 x86_64
+* Centos 6 x86_64 (not test yet)
+* Centos 7 x86_64 (not test yet)
+* Ubuntu 14.04 x86_64 (not test yet)
 
 ## Author
 
 LStuker
 
+## License
+
+The puppet module is provided under the terms of The MIT License.
 
 ## Support
 
