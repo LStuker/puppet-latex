@@ -22,25 +22,26 @@ class latex::params{
     'Debian': {
       $packages = $::operatingsystem ? {
         'Ubuntu' => $::lsbmajdistrelease ? {
-          /^10/,/^11/,/^12/ => ['texlive-latex-base',
-                                'texlive-latex-recommended',
-                                'texlive-latex-extra',
-                                'texlive-latex-doc'
-                                ],
-          default => ['texlive-latex-base-doc',
-                      'texlive-latex-recommended',
-                      'texlive-latex-extra',
-                      'texlive-latex-doc'
+          /^(10|1|12)$/ => [ 'texlive-latex-base',
+                             'texlive-latex-recommended',
+                             'texlive-latex-extra',
+                             'texlive-latex-doc'
+                            ],
+          default => [ 'texlive-latex-base-doc',
+                       'texlive-latex-recommended',
+                       'texlive-latex-extra',
+                       'texlive-latex-doc'
                       ],
           },
-      default => ['texlive-latex-base-doc',
-                  'texlive-latex-recommended',
-                  'texlive-latex-extra',
-                  'texlive-latex-doc'
-                 ],
+        default => [ 'texlive-latex-base-doc',
+                     'texlive-latex-recommended',
+                     'texlive-latex-extra',
+                     'texlive-latex-doc'
+                   ],
+      }
     }
     default: {
-      warning("Module 'latex' is not currently supported on OS: ${::operatingsystem}")
+      warning("Module 'latex' is not currently supported on ${::operatingsystem}")
     }
   }
 }
